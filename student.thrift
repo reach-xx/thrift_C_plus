@@ -4,10 +4,10 @@ struct Student{
  3: bool ssex,
  4: i16 sage,
 }
-service Serv{
+service Serv  {
  void put(1: Student s),
  i32 get(),
- void list(Student s),
+ void display(1: Student s)
 }
 
 
