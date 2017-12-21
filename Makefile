@@ -1,10 +1,7 @@
 CC=g++ -g -Wall
 
-CFLAGS = `pkg-config --cflags thrift`
+CFLAGS = `pkg-config --cflags --libs  thrift`
 
-LFLAGS = `pkg-config --libs thrift`
-
-LDEXEFLAGS=
 
 OBJS = Serv.o \
         student_types.o \
@@ -25,10 +22,10 @@ Client.o: Client.cpp
 	$(CC) $(CFLAGS) -c $^ -o $@
 
 server: $(OBJS) Serv_server.skeleton.o
-	$(CC) $(LFLAGS) $(OBJS) Serv_server.skeleton.o  $(LDEXEFLAGS) -o $@
+	$(CC) -o $@ $(OBJS) Serv_server.skeleton.o  $(CFLAGS)
 
 client: $(OBJS)  Client.o
-	$(CC) $(LFLAGS) $(OBJS)  Client.o  $(LDEXEFLAGS) -o $@
+	$(CC) -o $@  $(OBJS) Client.o  $(CFLAGS)
 
 
 clean:
