@@ -21,9 +21,19 @@ class ServHandler : virtual public ServIf {
   }
 
   void put(const Student& s) {
-	printf("sno=%d sname=%s ssex=%d sage=%d/n", s.sno, s.sname.c_str(), s.ssex, s.sage);
-	// Your implementation goes here
-	printf("put\n");
+    // Your implementation goes here
+    printf("put\n");
+	printf("sno=%d sname=%s ssex=%d sage=%d\n", s.sno, s.sname.c_str(), s.ssex, s.sage);	
+  }
+
+  int32_t get() {
+    // Your implementation goes here
+    printf("get\n");
+  }
+
+  void display(const Student& s) {
+    // Your implementation goes here
+    printf("display\n");
   }
 
 };

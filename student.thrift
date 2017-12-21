@@ -6,6 +6,8 @@ struct Student{
 }
 service Serv{
  void put(1: Student s),
+ i32 get(),
+ void list(Student s),
 }
 
 

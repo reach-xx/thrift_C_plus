@@ -10,29 +10,29 @@ using namespace apache::thrift::transport;
 using boost::shared_ptr;  
   
 int main(int argc, char **argv) {  
-    boost::shared_ptr<TSocket> socket(new TSocket("localhost", 9090));  
-    boost::shared_ptr<TTransport> transport(new TBufferedTransport(socket));  
-    boost::shared_ptr<TProtocol> protocol(new TBinaryProtocol(transport));  
-  
-    transport->open();  
- Student s;
- s.sno = 123;
- s.sname = "xiaoshe";
- s.ssex = 1;
- s.sage = 30;
+	boost::shared_ptr<TSocket> socket(new TSocket("192.168.4.83", 9090));  
+	boost::shared_ptr<TTransport> transport(new TBufferedTransport(socket));  
+	boost::shared_ptr<TProtocol> protocol(new TBinaryProtocol(transport));  
 
-// 再定义一个对象client，又是以"Serv"开头的类
+	transport->open();  
+	Student s;
+	s.sno = 123;
+	s.sname = "xiaoshe";
+	s.ssex = 1;
+	s.sage = 30;
 
-  ServClient client(protocol);
+	// 再定义一个对象client，又是以"Serv"开头的类
+	ServClient client(protocol);
 
-// 最后调用put函数向服务端传输数据, put是student.thrift采用service定义的成员函数。
+	// 最后调用put函数向服务端传输数据, put是student.thrift采用service定义的成员函数。
 
-// 调用put后，服务端也调用相应的put()
-   client.put(s); 
+	// 调用put后，服务端也调用相应的put()
+	client.put(s); 
+	client.display(s);
+	client.get();
 
- 
-   transport->close();  
-             
+	transport->close();  
+	     
 	return 0;  
 }  
     
